@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Lato', sans-serif; background: #fefcf8; color: #2d1a07; }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display', serif; }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #c8851f 0%, #e8be72 50%, #a96a16 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-coffee-gradient { background: linear-gradient(145deg, #2d1a07 0%, #4a2a0d 40%, #6b3d12 100%); }
+  .bg-coffee-gradient-warm { background: linear-gradient(145deg, #4a2a0d, #8a5214); }
+  .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); }
+  .glass-dark { background: rgba(45,26,7,0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+  .card-lift { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
+  .card-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(74,42,13,0.18); }
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .opacity-0-init { opacity: 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #fdf8f0; }
+::-webkit-scrollbar-thumb { background: #c8851f; border-radius: 10px; }
+
+/* Chatbot */
+.chat-bubble-user { background: linear-gradient(135deg, #c8851f, #a96a16); border-radius: 18px 18px 4px 18px; }
+.chat-bubble-bot { background: #fff; border: 1px solid #f2d9aa; border-radius: 18px 18px 18px 4px; box-shadow: 0 2px 8px rgba(74,42,13,0.08); }
+
+/* Image overlay */
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+.img-zoom:hover img { transform: scale(1.08); }
+
+/* Admin sidebar */
+.admin-nav-item { transition: all 0.2s; }
+.admin-nav-item:hover { background: rgba(200,133,31,0.12); color: #c8851f; }
+.admin-nav-item.active { background: rgba(200,133,31,0.15); color: #c8851f; border-right: 3px solid #c8851f; }
