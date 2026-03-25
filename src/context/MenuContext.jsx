@@ -3,14 +3,27 @@ import { DEFAULT_MENU } from '../data/menuData'
 
 const MenuContext = createContext(null)
 
+// Change this version number every time you update menuData.js
+// This forces ALL browsers to reload fresh data automatically
+const MENU_VERSION = 'v6'
+
 export function MenuProvider({ children }) {
   const [menuItems, setMenuItems] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     try {
+      const storedVersion = localStorage.getItem('ikigai_menu_version')
       const stored = localStorage.getItem('ikigai_menu_v2')
-      setMenuItems(stored ? JSON.parse(stored) : DEFAULT_MENU)
+
+      // Version mismatch or no data = load fresh from menuData.js
+      if (storedVersion !== MENU_VERSION || !stored) {
+        localStorage.setItem('ikigai_menu_version', MENU_VERSION)
+        localStorage.setItem('ikigai_menu_v2', JSON.stringify(DEFAULT_MENU))
+        setMenuItems(DEFAULT_MENU)
+      } else {
+        setMenuItems(JSON.parse(stored))
+      }
     } catch {
       setMenuItems(DEFAULT_MENU)
     }
@@ -47,6 +60,7 @@ export function MenuProvider({ children }) {
   }
 
   const resetToDefault = () => {
+    localStorage.setItem('ikigai_menu_version', MENU_VERSION)
     persist(DEFAULT_MENU)
   }
 
