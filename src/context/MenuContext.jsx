@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import {
-  collection, addDoc, updateDoc,
-  deleteDoc, doc, setDoc, onSnapshot, writeBatch
+  collection, addDoc, updateDoc, deleteDoc,
+  doc, setDoc, onSnapshot, writeBatch, getDocs
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
 import { DEFAULT_MENU } from '../data/menuData'
@@ -13,11 +13,9 @@ const COLLECTION = 'menu'
 export function MenuProvider({ children }) {
   const [menuItems, setMenuItems] = useState([])
   const [loading, setLoading] = useState(true)
-  const [firebaseReady, setFirebaseReady] = useState(false)
 
   useEffect(() => {
     let seeding = false
-
     const unsub = onSnapshot(
       collection(db, COLLECTION),
       (snapshot) => {
@@ -25,25 +23,20 @@ export function MenuProvider({ children }) {
           seeding = true
           seedDefaultMenu()
         } else if (!snapshot.empty) {
-          // Clear localStorage — always use Firebase as source of truth
           localStorage.removeItem('ikigai_menu_v2')
           localStorage.removeItem('ikigai_menu_version')
-
           const items = snapshot.docs.map(d => ({ id: d.id, ...d.data() }))
           items.sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
           setMenuItems(items)
-          setFirebaseReady(true)
           setLoading(false)
         }
       },
       (error) => {
         console.error('Firebase error:', error)
-        // Fallback to default menu if Firebase fails
         setMenuItems(DEFAULT_MENU)
         setLoading(false)
       }
     )
-
     return () => unsub()
   }, [])
 
@@ -82,8 +75,10 @@ export function MenuProvider({ children }) {
 
   const updateItem = async (id, data) => {
     try {
-      const ref = doc(db, COLLECTION, id)
-      await updateDoc(ref, { ...data, updatedAt: new Date().toISOString() })
+      await updateDoc(doc(db, COLLECTION, id), {
+        ...data,
+        updatedAt: new Date().toISOString()
+      })
     } catch (error) {
       console.error('Update error:', error)
       throw error
@@ -111,12 +106,10 @@ export function MenuProvider({ children }) {
 
   const resetToDefault = async () => {
     try {
-      // Delete all existing docs
+      const snapshot = await getDocs(collection(db, COLLECTION))
       const batch = writeBatch(db)
-      const snapshot = await import('firebase/firestore').then(({ getDocs }) => getDocs(collection(db, COLLECTION)))
       snapshot.docs.forEach(d => batch.delete(doc(db, COLLECTION, d.id)))
       await batch.commit()
-      // Re-seed
       await seedDefaultMenu()
       toast.success('Menu reset to defaults!')
     } catch (error) {
@@ -127,7 +120,7 @@ export function MenuProvider({ children }) {
 
   return (
     <MenuContext.Provider value={{
-      menuItems, loading, firebaseReady,
+      menuItems, loading,
       addItem, updateItem, deleteItem,
       toggleAvailability, toggleFeatured,
       resetToDefault
