@@ -12,6 +12,7 @@ import AdminLogin from './pages/admin/Login'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminAddItem from './pages/admin/AddItem'
 import AdminEditItem from './pages/admin/EditItem'
+import AdminSettings from './pages/admin/Settings'
 
 function ProtectedRoute({ children }) {
   const { isAdmin } = useAuth()
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
         <Route path="/admin/add" element={<ProtectedRoute><AdminAddItem /></ProtectedRoute>} />
         <Route path="/admin/edit/:id" element={<ProtectedRoute><AdminEditItem /></ProtectedRoute>} />
+        <Route path="/admin/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

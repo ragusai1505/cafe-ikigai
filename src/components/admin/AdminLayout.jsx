@@ -1,10 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Plus, Coffee, LogOut, ExternalLink, ShieldCheck } from 'lucide-react'
+import { LayoutDashboard, Plus, Coffee, LogOut, ExternalLink, ShieldCheck, Settings } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 
 const NAV = [
   { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', exact: true },
   { to: '/admin/add', icon: Plus, label: 'Add Item' },
+  { to: '/admin/settings', icon: Settings, label: 'Settings' },
 ]
 
 export default function AdminLayout({ children }) {
