@@ -1,14 +1,14 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect } from "react"
 import {
   collection, addDoc, updateDoc, deleteDoc,
   doc, setDoc, onSnapshot, writeBatch, getDocs
-} from 'firebase/firestore'
-import { db } from '../lib/firebase'
-import { DEFAULT_MENU } from '../data/menuData'
-import toast from 'react-hot-toast'
+} from "firebase/firestore"
+import { db } from "../lib/firebase"
+import { DEFAULT_MENU } from "../data/menuData"
+import toast from "react-hot-toast"
 
 const MenuContext = createContext(null)
-const COLLECTION = 'menu'
+const COLLECTION = "menu"
 
 export function MenuProvider({ children }) {
   const [menuItems, setMenuItems] = useState([])
@@ -23,8 +23,8 @@ export function MenuProvider({ children }) {
           seeding = true
           seedDefaultMenu()
         } else if (!snapshot.empty) {
-          localStorage.removeItem('ikigai_menu_v2')
-          localStorage.removeItem('ikigai_menu_version')
+          localStorage.removeItem("ikigai_menu_v2")
+          localStorage.removeItem("ikigai_menu_version")
           const items = snapshot.docs.map(d => ({ id: d.id, ...d.data() }))
           items.sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
           setMenuItems(items)
@@ -32,7 +32,7 @@ export function MenuProvider({ children }) {
         }
       },
       (error) => {
-        console.error('Firebase error:', error)
+        console.error("Firebase error:", error)
         setMenuItems(DEFAULT_MENU)
         setLoading(false)
       }
@@ -50,7 +50,7 @@ export function MenuProvider({ children }) {
       })
       await batch.commit()
     } catch (error) {
-      console.error('Seed error:', error)
+      console.error("Seed error:", error)
       setMenuItems(DEFAULT_MENU)
       setLoading(false)
     }
@@ -68,7 +68,7 @@ export function MenuProvider({ children }) {
       const docRef = await addDoc(collection(db, COLLECTION), newItem)
       return { id: docRef.id, ...newItem }
     } catch (error) {
-      console.error('Add error:', error)
+      console.error("Add error:", error)
       throw error
     }
   }
@@ -80,7 +80,7 @@ export function MenuProvider({ children }) {
         updatedAt: new Date().toISOString()
       })
     } catch (error) {
-      console.error('Update error:', error)
+      console.error("Update error:", error)
       throw error
     }
   }
@@ -89,7 +89,7 @@ export function MenuProvider({ children }) {
     try {
       await deleteDoc(doc(db, COLLECTION, id))
     } catch (error) {
-      console.error('Delete error:', error)
+      console.error("Delete error:", error)
       throw error
     }
   }
@@ -111,10 +111,10 @@ export function MenuProvider({ children }) {
       snapshot.docs.forEach(d => batch.delete(doc(db, COLLECTION, d.id)))
       await batch.commit()
       await seedDefaultMenu()
-      toast.success('Menu reset to defaults!')
+      toast.success("Menu reset to defaults!")
     } catch (error) {
-      console.error('Reset error:', error)
-      toast.error('Reset failed.')
+      console.error("Reset error:", error)
+      toast.error("Reset failed.")
     }
   }
 
