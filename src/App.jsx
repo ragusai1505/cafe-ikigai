@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Chatbot from './components/chatbot/Chatbot'
 import WhatsAppButton from './components/whatsapp/WhatsAppButton'
+import ScrollToTop from './components/ui/ScrollToTop'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import About from './pages/About'
@@ -28,6 +29,7 @@ function PublicLayout({ children }) {
       <Footer />
       <Chatbot />
       <WhatsAppButton />
+      <ScrollToTop />
     </div>
   )
 }
