@@ -360,8 +360,8 @@ export default function Chatbot() {
 
   return (
     <>
-      {/* Floating button */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+      {/* Floating button - moved left to avoid WhatsApp button */}
+      <div className="fixed bottom-6 right-24 z-50 flex flex-col items-end gap-2">
         {!open && hasNew && (
           <div className="bg-white border border-coffee-200 rounded-2xl px-3 py-2 shadow-lg text-coffee-700 text-xs font-medium animate-fade-in max-w-44 text-right">
             Ask me anything! ☕
@@ -378,7 +378,7 @@ export default function Chatbot() {
 
       {/* Chat window */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-coffee-100 flex flex-col overflow-hidden animate-slide-up"
+        <div className="fixed bottom-24 right-24 z-50 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-coffee-100 flex flex-col overflow-hidden animate-slide-up"
           style={{ maxHeight: '540px' }}>
 
           {/* Header */}

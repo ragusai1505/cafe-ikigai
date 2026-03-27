@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { Search, SlidersHorizontal, X, Star, CheckCircle, XCircle } from 'lucide-react'
 import { useMenu } from '../context/MenuContext'
 import { CATEGORIES } from '../data/menuData'
+import { WhatsAppMenuBanner } from '../components/whatsapp/WhatsAppWidgets'
 
 const DEFAULT_IMG = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80'
 
@@ -182,6 +183,11 @@ export default function Menu() {
               </button>
             )
           })}
+        </div>
+
+        {/* WhatsApp banner */}
+        <div className="mb-8">
+          <WhatsAppMenuBanner />
         </div>
 
         {/* Grid */}

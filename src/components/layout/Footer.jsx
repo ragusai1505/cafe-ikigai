@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Coffee } from 'lucide-react'
 import { CONTACT_INFO } from '../../data/menuData'
+import { WhatsAppFooterLink } from '../whatsapp/WhatsAppWidgets'
 
 export default function Footer() {
   return (
@@ -22,7 +23,7 @@ export default function Footer() {
             <p className="text-coffee-400 text-sm leading-relaxed mb-5">
               Sip. Savor. Discover Purpose. — your cozy corner for specialty coffee in Kondapur, Hyderabad.
             </p>
-            <div className="flex gap-2.5">
+            <div className="flex gap-2.5 flex-wrap">
               <a href={CONTACT_INFO.instagram} target="_blank" rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-coffee-800 hover:bg-coffee-700 flex items-center justify-center transition-colors group">
                 <Instagram size={15} className="text-coffee-300 group-hover:text-white" />
@@ -31,6 +32,7 @@ export default function Footer() {
                 className="w-9 h-9 rounded-full bg-coffee-800 hover:bg-coffee-700 flex items-center justify-center transition-colors group">
                 <Facebook size={15} className="text-coffee-300 group-hover:text-white" />
               </a>
+              <WhatsAppFooterLink />
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, ExternalLink } from 'lucide-react'
 import { CONTACT_INFO } from '../data/menuData'
+import { WhatsAppContact } from '../components/whatsapp/WhatsAppWidgets'
 
 export default function Contact() {
   return (
@@ -51,6 +52,9 @@ export default function Contact() {
                 </div>
               </InfoRow>
             </div>
+
+            {/* WhatsApp */}
+            <WhatsAppContact />
 
             {/* Social */}
             <div className="mt-10">

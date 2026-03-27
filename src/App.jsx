@@ -4,6 +4,7 @@ import { useAuth } from './context/AuthContext'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Chatbot from './components/chatbot/Chatbot'
+import WhatsAppButton from './components/whatsapp/WhatsAppButton'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import About from './pages/About'
@@ -26,6 +27,7 @@ function PublicLayout({ children }) {
       <main className="flex-1">{children}</main>
       <Footer />
       <Chatbot />
+      <WhatsAppButton />
     </div>
   )
 }
