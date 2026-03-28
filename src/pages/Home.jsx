@@ -32,10 +32,12 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-brand-gradient" />
-        <div className="absolute inset-0 opacity-30 bg-cover bg-center"
+        {/* Deep dark background - not pink */}
+        <div className="absolute inset-0" style={{background: 'linear-gradient(145deg, #0d0508 0%, #1a0a10 40%, #2d1219 100%)'}} />
+        <div className="absolute inset-0 opacity-35 bg-cover bg-center"
           style={{ backgroundImage: `url('/cafe-hero.png')` }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-950/80 via-brand-900/50 to-brand-950/95" />
+        {/* Dark overlay - not pink */}
+        <div className="absolute inset-0" style={{background:'linear-gradient(to bottom, rgba(13,5,8,0.75) 0%, rgba(26,10,16,0.45) 50%, rgba(13,5,8,0.90) 100%)'}} />
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           {/* Logo */}

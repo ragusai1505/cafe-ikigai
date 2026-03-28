@@ -293,11 +293,11 @@ function MessageBubble({ msg }) {
   return (
     <div className={`flex gap-2 ${isBot ? 'justify-start' : 'justify-end'} mb-3`}>
       {isBot && (
-        <div className="w-7 h-7 rounded-full bg-coffee-gradient flex items-center justify-center flex-shrink-0 mt-auto mb-0.5 shadow-sm">
+        <div className="w-7 h-7 rounded-full bg-brand-gradient flex items-center justify-center flex-shrink-0 mt-auto mb-0.5 shadow-sm">
           <Coffee size={12} className="text-amber-100" />
         </div>
       )}
-      <div className={`max-w-[82%] px-4 py-3 text-sm leading-relaxed ${isBot ? 'chat-bubble-bot text-coffee-800' : 'chat-bubble-user text-white'}`}>
+      <div className={`max-w-[82%] px-4 py-3 text-sm leading-relaxed ${isBot ? 'chat-bubble-bot text-brand-800' : 'chat-bubble-user text-white'}`}>
         {renderText(msg.text)}
       </div>
     </div>
@@ -363,12 +363,12 @@ export default function Chatbot() {
       {/* Floating button - moved left to avoid WhatsApp button */}
       <div className="fixed bottom-6 right-24 z-50 flex flex-col items-end gap-2">
         {!open && hasNew && (
-          <div className="bg-white border border-coffee-200 rounded-2xl px-3 py-2 shadow-lg text-coffee-700 text-xs font-medium animate-fade-in max-w-44 text-right">
+          <div className="bg-white border border-blush-200 rounded-2xl px-3 py-2 shadow-lg text-brand-700 text-xs font-medium animate-fade-in max-w-44 text-right">
             Ask me anything! ☕
           </div>
         )}
         <button onClick={() => setOpen(!open)}
-          className="w-14 h-14 rounded-full bg-coffee-gradient text-white shadow-xl hover:shadow-2xl transition-all hover:scale-110 flex items-center justify-center relative"
+          className="w-14 h-14 rounded-full bg-brand-gradient text-white shadow-xl hover:shadow-2xl transition-all hover:scale-110 flex items-center justify-center relative"
           style={{ animation: 'pulseGlow 2s infinite' }}
           aria-label="Open chat">
           {open ? <ChevronDown size={22} /> : <MessageCircle size={22} />}
@@ -378,11 +378,11 @@ export default function Chatbot() {
 
       {/* Chat window */}
       {open && (
-        <div className="fixed bottom-24 right-24 z-50 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-coffee-100 flex flex-col overflow-hidden animate-slide-up"
+        <div className="fixed bottom-24 right-24 z-50 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-blush-100 flex flex-col overflow-hidden animate-slide-up"
           style={{ maxHeight: '540px' }}>
 
           {/* Header */}
-          <div className="bg-coffee-gradient px-5 py-4 flex items-center justify-between flex-shrink-0">
+          <div className="bg-brand-gradient px-5 py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-white/15 border border-white/20 flex items-center justify-center">
                 <Coffee size={16} className="text-white" />
@@ -391,7 +391,7 @@ export default function Chatbot() {
                 <div className="font-display text-base text-white font-semibold">Ikigai Bot</div>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                  <span className="text-coffee-300 text-xs">Online · {menuItems.filter(i=>i.available).length} items available</span>
+                  <span className="text-blush-300 text-xs">Online · {menuItems.filter(i=>i.available).length} items available</span>
                 </div>
               </div>
             </div>
@@ -406,7 +406,7 @@ export default function Chatbot() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-4 py-4 bg-coffee-50/30" style={{ minHeight: 0 }}>
+          <div className="flex-1 overflow-y-auto px-4 py-4 bg-blush-50/30" style={{ minHeight: 0 }}>
             {messages.map(msg => (
               <div key={msg.id}>
                 <MessageBubble msg={msg} />
@@ -414,7 +414,7 @@ export default function Chatbot() {
                   <div className="flex flex-wrap gap-1.5 ml-9 mb-3">
                     {msg.suggestions.map((s, i) => (
                       <button key={i} onClick={() => sendMessage(s)}
-                        className="text-xs bg-white border border-coffee-200 hover:border-coffee-400 hover:bg-coffee-50 text-coffee-600 px-2.5 py-1 rounded-full transition-all">
+                        className="text-xs bg-white border border-blush-200 hover:border-brand-400 hover:bg-blush-50 text-brand-600 px-2.5 py-1 rounded-full transition-all">
                         {s}
                       </button>
                     ))}
@@ -425,13 +425,13 @@ export default function Chatbot() {
 
             {typing && (
               <div className="flex gap-2 items-end mb-2">
-                <div className="w-7 h-7 rounded-full bg-coffee-gradient flex items-center justify-center flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-brand-gradient flex items-center justify-center flex-shrink-0">
                   <Coffee size={12} className="text-amber-100" />
                 </div>
                 <div className="chat-bubble-bot px-4 py-3">
                   <div className="flex gap-1.5 items-center h-4">
                     {[0, 150, 300].map(d => (
-                      <div key={d} className="w-1.5 h-1.5 bg-coffee-400 rounded-full animate-bounce" style={{ animationDelay: `${d}ms` }} />
+                      <div key={d} className="w-1.5 h-1.5 bg-brand-400 rounded-full animate-bounce" style={{ animationDelay: `${d}ms` }} />
                     ))}
                   </div>
                 </div>
@@ -441,19 +441,19 @@ export default function Chatbot() {
           </div>
 
           {/* Input */}
-          <div className="px-4 py-3 bg-white border-t border-coffee-100 flex-shrink-0">
-            <div className="flex items-center gap-2 bg-coffee-50 border border-coffee-200 rounded-2xl px-4 py-2.5 focus-within:border-coffee-400 focus-within:ring-2 focus-within:ring-coffee-400/20 transition-all">
+          <div className="px-4 py-3 bg-white border-t border-blush-100 flex-shrink-0">
+            <div className="flex items-center gap-2 bg-blush-50 border border-blush-200 rounded-2xl px-4 py-2.5 focus-within:border-brand-400 focus-within:ring-2 focus-within:ring-brand-400/20 transition-all">
               <input ref={inputRef} type="text" value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKey}
                 placeholder="Ask about our menu..."
-                className="flex-1 bg-transparent text-coffee-800 text-sm placeholder-coffee-300 focus:outline-none" />
+                className="flex-1 bg-transparent text-brand-800 text-sm placeholder-blush-300 focus:outline-none" />
               <button onClick={() => sendMessage(input)} disabled={!input.trim() || typing}
-                className="w-7 h-7 rounded-full bg-coffee-500 hover:bg-coffee-600 disabled:opacity-40 flex items-center justify-center transition-all flex-shrink-0">
+                className="w-7 h-7 rounded-full bg-blush-500 hover:bg-brand-600 disabled:opacity-40 flex items-center justify-center transition-all flex-shrink-0">
                 <Send size={13} className="text-white" />
               </button>
             </div>
-            <p className="text-center text-coffee-300 text-[10px] mt-2 font-mono">Café Ikigai · Kondapur, Hyderabad</p>
+            <p className="text-center text-blush-300 text-[10px] mt-2 font-mono">Café Ikigai · Kondapur, Hyderabad</p>
           </div>
         </div>
       )}

@@ -90,38 +90,38 @@ export default function AdminAddItem() {
       <div className="p-8 max-w-3xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
           <button onClick={() => navigate('/admin')}
-            className="w-9 h-9 rounded-xl border border-coffee-200 flex items-center justify-center text-coffee-500 hover:bg-coffee-50 transition-colors">
+            className="w-9 h-9 rounded-xl border border-blush-200 flex items-center justify-center text-blush-500 hover:bg-blush-50 transition-colors">
             <ArrowLeft size={17} />
           </button>
           <div>
-            <h1 className="font-display text-3xl text-coffee-900">Add Menu Item</h1>
-            <p className="text-coffee-400 text-sm mt-0.5">Saves to Firebase instantly ⚡</p>
+            <h1 className="font-display text-3xl text-brand-900">Add Menu Item</h1>
+            <p className="text-brand-400 text-sm mt-0.5">Saves to Firebase instantly ⚡</p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
           {/* Image URL section */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-coffee-50">
-            <h2 className="font-display text-lg text-coffee-900 mb-2">Item Image</h2>
-            <p className="text-coffee-400 text-xs mb-4">
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-blush-50">
+            <h2 className="font-display text-lg text-brand-900 mb-2">Item Image</h2>
+            <p className="text-brand-400 text-xs mb-4">
               Paste an image URL from Google Images, Unsplash, etc. If left blank, a default image for the category will be used automatically.
             </p>
 
             <div className="flex items-center gap-2 mb-3">
-              <LinkIcon size={16} className="text-coffee-400 flex-shrink-0" />
+              <LinkIcon size={16} className="text-brand-400 flex-shrink-0" />
               <input
                 type="url"
                 placeholder="https://images.unsplash.com/photo-...?w=500"
                 value={imageUrl}
                 onChange={e => setImageUrl(e.target.value)}
-                className="w-full px-4 py-3 border border-coffee-200 rounded-xl text-sm text-coffee-800 placeholder-coffee-300 focus:outline-none focus:ring-2 focus:ring-coffee-400/50 focus:border-coffee-400 transition-all"
+                className="w-full px-4 py-3 border border-blush-200 rounded-xl text-sm text-brand-800 placeholder-blush-300 focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400 transition-all"
               />
             </div>
 
             {/* Preview */}
             <div className="mt-4 flex items-center gap-4">
-              <div className="relative w-32 h-32 rounded-xl overflow-hidden border border-coffee-200 bg-coffee-50 flex-shrink-0">
+              <div className="relative w-32 h-32 rounded-xl overflow-hidden border border-blush-200 bg-blush-50 flex-shrink-0">
                 <img
                   src={finalImage}
                   alt="Preview"
@@ -130,10 +130,10 @@ export default function AdminAddItem() {
                 />
               </div>
               <div>
-                <div className="text-xs text-coffee-400 mb-1">
+                <div className="text-xs text-brand-400 mb-1">
                   {imageUrl ? 'Using your URL' : selectedCategory ? `Auto: ${selectedCategory} default` : 'Auto: default image'}
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-coffee-500 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                <div className="flex items-center gap-1.5 text-xs text-blush-500 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                   <Image size={12} className="text-amber-500" />
                   Use URL only — uploading files is not supported (too large for database)
                 </div>
@@ -142,30 +142,30 @@ export default function AdminAddItem() {
           </div>
 
           {/* Details */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-coffee-50 space-y-5">
-            <h2 className="font-display text-lg text-coffee-900">Item Details</h2>
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-blush-50 space-y-5">
+            <h2 className="font-display text-lg text-brand-900">Item Details</h2>
 
             <div>
-              <label className="block text-xs font-mono text-coffee-500 uppercase tracking-widest mb-2">Item Name *</label>
+              <label className="block text-xs font-mono text-blush-500 uppercase tracking-widest mb-2">Item Name *</label>
               <input type="text" placeholder="e.g. Signature Espresso"
                 {...register('name', { required: 'Name is required', minLength: { value: 2, message: 'Min 2 characters' } })}
-                className="w-full px-4 py-3 border border-coffee-200 rounded-xl text-sm text-coffee-800 placeholder-coffee-300 focus:outline-none focus:ring-2 focus:ring-coffee-400/50 focus:border-coffee-400 transition-all" />
+                className="w-full px-4 py-3 border border-blush-200 rounded-xl text-sm text-brand-800 placeholder-blush-300 focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400 transition-all" />
               {errors.name && <p className="text-red-500 text-xs mt-1.5">{errors.name.message}</p>}
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-coffee-500 uppercase tracking-widest mb-2">Description *</label>
+              <label className="block text-xs font-mono text-blush-500 uppercase tracking-widest mb-2">Description *</label>
               <textarea rows={3} placeholder="Describe the item, flavour notes..."
                 {...register('description', { required: 'Description is required', minLength: { value: 5, message: 'Min 5 characters' } })}
-                className="w-full px-4 py-3 border border-coffee-200 rounded-xl text-sm text-coffee-800 placeholder-coffee-300 focus:outline-none focus:ring-2 focus:ring-coffee-400/50 focus:border-coffee-400 transition-all resize-none" />
+                className="w-full px-4 py-3 border border-blush-200 rounded-xl text-sm text-brand-800 placeholder-blush-300 focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400 transition-all resize-none" />
               {errors.description && <p className="text-red-500 text-xs mt-1.5">{errors.description.message}</p>}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs font-mono text-coffee-500 uppercase tracking-widest mb-2">Category *</label>
+                <label className="block text-xs font-mono text-blush-500 uppercase tracking-widest mb-2">Category *</label>
                 <select {...register('category', { required: 'Category is required' })}
-                  className="w-full px-4 py-3 border border-coffee-200 rounded-xl text-sm text-coffee-800 focus:outline-none focus:ring-2 focus:ring-coffee-400/50 focus:border-coffee-400 transition-all bg-white">
+                  className="w-full px-4 py-3 border border-blush-200 rounded-xl text-sm text-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400 transition-all bg-white">
                   <option value="">Select category...</option>
                   {CATEGORIES.filter(c => c !== 'All').map(c => (
                     <option key={c} value={c}>{c}</option>
@@ -174,27 +174,27 @@ export default function AdminAddItem() {
                 {errors.category && <p className="text-red-500 text-xs mt-1.5">{errors.category.message}</p>}
               </div>
               <div>
-                <label className="block text-xs font-mono text-coffee-500 uppercase tracking-widest mb-2">Price (₹) *</label>
+                <label className="block text-xs font-mono text-blush-500 uppercase tracking-widest mb-2">Price (₹) *</label>
                 <input type="number" min="1" max="9999" placeholder="e.g. 180"
                   {...register('price', { required: 'Price is required', min: { value: 1, message: 'Min ₹1' }, valueAsNumber: true })}
-                  className="w-full px-4 py-3 border border-coffee-200 rounded-xl text-sm text-coffee-800 placeholder-coffee-300 focus:outline-none focus:ring-2 focus:ring-coffee-400/50 focus:border-coffee-400 transition-all" />
+                  className="w-full px-4 py-3 border border-blush-200 rounded-xl text-sm text-brand-800 placeholder-blush-300 focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400 transition-all" />
                 {errors.price && <p className="text-red-500 text-xs mt-1.5">{errors.price.message}</p>}
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               {[
-                { field: 'available', label: 'Available', desc: 'Show on public menu', activeColor: 'peer-checked:bg-coffee-500' },
+                { field: 'available', label: 'Available', desc: 'Show on public menu', activeColor: 'peer-checked:bg-blush-500' },
                 { field: 'featured', label: 'Featured', desc: 'Show on homepage', activeColor: 'peer-checked:bg-amber-400' },
               ].map(({ field, label, desc, activeColor }) => (
-                <label key={field} className="flex items-center justify-between p-4 rounded-xl border border-coffee-200 cursor-pointer hover:bg-coffee-50 transition-colors">
+                <label key={field} className="flex items-center justify-between p-4 rounded-xl border border-blush-200 cursor-pointer hover:bg-blush-50 transition-colors">
                   <div>
-                    <div className="text-sm font-medium text-coffee-800">{label}</div>
-                    <div className="text-xs text-coffee-400 mt-0.5">{desc}</div>
+                    <div className="text-sm font-medium text-brand-800">{label}</div>
+                    <div className="text-xs text-brand-400 mt-0.5">{desc}</div>
                   </div>
                   <div className="relative">
                     <input type="checkbox" {...register(field)} className="sr-only peer" />
-                    <div className={`w-11 h-6 bg-coffee-200 ${activeColor} rounded-full transition-colors`} />
+                    <div className={`w-11 h-6 bg-blush-200 ${activeColor} rounded-full transition-colors`} />
                     <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5" />
                   </div>
                 </label>
@@ -204,11 +204,11 @@ export default function AdminAddItem() {
 
           <div className="flex gap-4">
             <button type="button" onClick={() => navigate('/admin')}
-              className="flex-1 border border-coffee-200 text-coffee-600 py-3 rounded-xl text-sm font-medium hover:bg-coffee-50 transition-colors">
+              className="flex-1 border border-blush-200 text-brand-600 py-3 rounded-xl text-sm font-medium hover:bg-blush-50 transition-colors">
               Cancel
             </button>
             <button type="submit" disabled={submitting}
-              className="flex-1 bg-coffee-600 hover:bg-coffee-700 disabled:opacity-60 text-white py-3 rounded-xl text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2">
+              className="flex-1 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white py-3 rounded-xl text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2">
               {submitting
                 ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Saving...</>
                 : <><Plus size={16} /> Add to Menu</>}
