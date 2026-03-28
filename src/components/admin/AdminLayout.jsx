@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Plus, Coffee, LogOut, ExternalLink, ShieldCheck, Settings } from 'lucide-react'
+import { LayoutDashboard, Plus, LogOut, ExternalLink, ShieldCheck, Settings } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 
 const NAV = [
@@ -12,43 +12,34 @@ export default function AdminLayout({ children }) {
   const { logout, user } = useAuth()
   const location = useLocation()
   const navigate = useNavigate()
-
   const handleLogout = () => { logout(); navigate('/') }
   const isActive = (to, exact) => exact ? location.pathname === to : location.pathname.startsWith(to)
 
   return (
-    <div className="min-h-screen bg-coffee-50 flex">
-      {/* Sidebar */}
-      <aside className="w-60 bg-white border-r border-coffee-100 flex flex-col fixed left-0 top-0 bottom-0 z-40 shadow-sm">
-        <div className="p-6 border-b border-coffee-100">
-          <Link to="/" className="flex items-center gap-2.5 group mb-1">
-            <div className="w-8 h-8 rounded-full bg-coffee-gradient flex items-center justify-center">
-              <Coffee size={14} className="text-amber-100" />
-            </div>
-            <span className="font-display text-base font-bold text-coffee-900">Cafe Ikigai</span>
+    <div className="min-h-screen bg-blush-50 flex" style={{background:'#fdf4f6'}}>
+      <aside className="w-60 bg-white border-r border-blush-100 flex flex-col fixed left-0 top-0 bottom-0 z-40 shadow-sm">
+        <div className="p-6 border-b border-blush-100">
+          <Link to="/" className="block mb-3">
+            <img src="/logo.png" alt="Café Ikigai" className="h-12 w-auto object-contain" />
           </Link>
-          <div className="flex items-center gap-1.5 mt-3 bg-coffee-50 rounded-lg px-3 py-1.5">
-            <ShieldCheck size={12} className="text-coffee-500" />
-            <span className="text-coffee-500 text-xs font-mono">Admin Panel</span>
+          <div className="flex items-center gap-1.5 bg-blush-50 rounded-lg px-3 py-1.5">
+            <ShieldCheck size={12} className="text-brand-500" />
+            <span className="text-brand-500 text-xs font-mono">Admin Panel</span>
           </div>
         </div>
-
         <nav className="flex-1 p-4 space-y-1">
           {NAV.map(({ to, icon: Icon, label, exact }) => (
             <Link key={to} to={to}
-              className={`admin-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${isActive(to, exact) ? 'active text-coffee-600 bg-coffee-50' : 'text-coffee-600 hover:bg-coffee-50'}`}>
-              <Icon size={17} />
-              {label}
+              className={`admin-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${isActive(to, exact) ? 'active' : 'text-brand-600'}`}>
+              <Icon size={17} /> {label}
             </Link>
           ))}
         </nav>
-
-        <div className="p-4 border-t border-coffee-100 space-y-2">
+        <div className="p-4 border-t border-blush-100 space-y-2">
           <div className="px-3 py-2">
-            <div className="text-xs font-mono text-coffee-400 truncate">{user?.email}</div>
+            <div className="text-xs font-mono text-brand-400 truncate">{user?.email}</div>
           </div>
-          <a href="/" target="_blank"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-coffee-500 hover:bg-coffee-50 w-full transition-colors">
+          <a href="/" target="_blank" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-brand-500 hover:bg-blush-50 w-full transition-colors">
             <ExternalLink size={15} /> View Site
           </a>
           <button onClick={handleLogout}
@@ -57,10 +48,7 @@ export default function AdminLayout({ children }) {
           </button>
         </div>
       </aside>
-
-      <div className="flex-1 ml-60">
-        {children}
-      </div>
+      <div className="flex-1 ml-60">{children}</div>
     </div>
   )
 }
