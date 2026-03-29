@@ -33,12 +33,12 @@ export default function Navbar() {
         : 'bg-white shadow-sm border-b border-blush-100'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
 
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img src="/logo.png" alt="Café Ikigai"
-              className={`h-10 md:h-12 w-auto object-contain transition-all group-hover:scale-105 ${transparent ? '' : ''}`}
+              className="h-14 md:h-16 w-auto object-contain transition-all group-hover:scale-105"
               style={transparent ? {filter:'brightness(0) invert(1)'} : {}} />
           </Link>
 
