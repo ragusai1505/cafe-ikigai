@@ -34,18 +34,18 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Warm dark background */}
         <div className="absolute inset-0" style={{background:'linear-gradient(160deg,#1c0d08 0%,#2a1208 40%,#1a0e0a 100%)'}} />
-        {/* Cafe photo overlay */}
-        <div className="absolute inset-0 opacity-30 bg-cover bg-center bg-no-repeat"
-          style={{backgroundImage:`url('/cafe-hero.png')`}} />
+        {/* Use a proper coffee shop background instead of cafe-hero.png */}
+        <div className="absolute inset-0 opacity-25 bg-cover bg-center bg-no-repeat"
+          style={{backgroundImage:`url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1800&q=80')`}} />
         {/* Subtle vignette */}
         <div className="absolute inset-0" style={{background:'radial-gradient(ellipse at center,rgba(0,0,0,0) 40%,rgba(0,0,0,0.6) 100%)'}} />
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          {/* Transparent logo — no white box */}
-          <div className="animate-fade-in mb-6">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
+          {/* Transparent logo — bigger and centered */}
+          <div className="animate-fade-in mb-8">
             <img src="/logo.png" alt="Café Ikigai"
-              className="h-44 md:h-56 w-auto mx-auto object-contain drop-shadow-2xl"
-              style={{filter:'drop-shadow(0 4px 24px rgba(242,196,206,0.3))'}} />
+              className="h-52 md:h-64 w-auto mx-auto object-contain"
+              style={{filter:'drop-shadow(0 8px 32px rgba(242,196,206,0.4)) brightness(1.05)'}} />
           </div>
 
           <p className="text-warm-100 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up stagger-2"
