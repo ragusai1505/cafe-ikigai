@@ -17,11 +17,10 @@ export default function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30)
+    const fn = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', fn)
     return () => window.removeEventListener('scroll', fn)
   }, [])
-
   useEffect(() => setOpen(false), [location.pathname])
 
   const isHome = location.pathname === '/'
@@ -29,18 +28,18 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      transparent ? 'bg-transparent' : 'bg-white/96 backdrop-blur-md shadow-sm border-b border-blush-200'
+      transparent
+        ? 'bg-transparent'
+        : 'bg-white shadow-sm border-b border-blush-100'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img
-              src="/logo.png"
-              alt="Café Ikigai"
-              className="h-10 md:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-            />
+          <Link to="/" className="flex items-center group">
+            <img src="/logo.png" alt="Café Ikigai"
+              className={`h-10 md:h-12 w-auto object-contain transition-all group-hover:scale-105 ${transparent ? '' : ''}`}
+              style={transparent ? {filter:'brightness(0) invert(1)'} : {}} />
           </Link>
 
           {/* Desktop nav */}
@@ -51,18 +50,21 @@ export default function Navbar() {
                 <Link key={to} to={to}
                   className={`relative text-sm font-medium tracking-wide transition-colors group ${
                     transparent
-                      ? active ? 'text-blush-200' : 'text-white/90 hover:text-white'
+                      ? active ? 'text-blush-200' : 'text-white/85 hover:text-white'
                       : active ? 'text-brand-600' : 'text-brand-700 hover:text-brand-500'
                   }`}>
                   {label}
-                  <span className={`absolute -bottom-0.5 left-0 h-0.5 bg-brand-500 transition-all duration-300 ${active ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                  <span className={`absolute -bottom-0.5 left-0 h-0.5 transition-all duration-300 ${active ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                    style={{background: transparent ? 'rgba(242,196,206,0.8)' : '#8B3A52'}} />
                 </Link>
               )
             })}
+
             {isAdmin ? (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 ml-1">
                 <Link to="/admin"
-                  className="flex items-center gap-1.5 bg-brand-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-brand-700 transition-colors shadow-sm">
+                  className="flex items-center gap-1.5 text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors shadow-sm"
+                  style={{background:'#8B3A52'}}>
                   <ShieldCheck size={14} /> Dashboard
                 </Link>
                 <button onClick={logout}
@@ -72,10 +74,10 @@ export default function Navbar() {
               </div>
             ) : (
               <Link to="/admin/login"
-                className={`ml-2 text-sm font-medium px-4 py-1.5 rounded-full border transition-all ${
+                className={`ml-1 text-sm font-medium px-4 py-1.5 rounded-full border transition-all ${
                   transparent
-                    ? 'border-white/30 text-white/80 hover:bg-white/10'
-                    : 'border-brand-300 text-brand-600 hover:bg-brand-50'
+                    ? 'border-white/25 text-white/80 hover:bg-white/10'
+                    : 'border-brand-300 text-brand-600 hover:bg-blush-50'
                 }`}>
                 Admin
               </Link>
@@ -84,8 +86,7 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <button onClick={() => setOpen(!open)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${transparent ? 'text-white' : 'text-brand-800'}`}
-            aria-label="Toggle menu">
+            className={`md:hidden p-2 rounded-lg ${transparent ? 'text-white' : 'text-brand-800'}`}>
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
@@ -93,24 +94,24 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-white border-t border-blush-200 shadow-xl animate-fade-in">
+        <div className="md:hidden bg-white border-t border-blush-100 shadow-xl animate-fade-in">
           <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
-            {/* Logo in mobile menu */}
             <div className="flex justify-center mb-3 pb-3 border-b border-blush-100">
               <img src="/logo.png" alt="Café Ikigai" className="h-10 w-auto" />
             </div>
             {NAV_LINKS.map(({ to, label }) => (
               <Link key={to} to={to}
                 className={`py-2.5 px-4 rounded-xl text-sm font-medium transition-colors ${
-                  location.pathname === to ? 'bg-blush-100 text-brand-700' : 'text-brand-800 hover:bg-blush-50'
-                }`}>
+                  location.pathname === to ? 'text-brand-700' : 'text-brand-800 hover:text-brand-600'
+                }`}
+                style={location.pathname === to ? {background:'#fdf0f3'} : {}}>
                 {label}
               </Link>
             ))}
             <div className="border-t border-blush-100 mt-2 pt-2">
               {isAdmin ? (
                 <>
-                  <Link to="/admin" className="flex items-center gap-2 py-2.5 px-4 rounded-xl text-sm font-medium bg-brand-600 text-white mb-1">
+                  <Link to="/admin" className="flex items-center gap-2 py-2.5 px-4 rounded-xl text-sm font-medium text-white mb-1" style={{background:'#8B3A52'}}>
                     <ShieldCheck size={14} /> Admin Dashboard
                   </Link>
                   <button onClick={logout} className="py-2.5 px-4 text-sm text-brand-400 w-full text-left">Logout</button>

@@ -5,50 +5,54 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-  body { font-family: 'Lato', sans-serif; background: #fffbfc; color: #2d1219; overflow-x: hidden; }
+  body { font-family: 'Lato', sans-serif; background: #fdfaf8; color: #2d1219; overflow-x: hidden; }
   h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display', serif; }
   img { max-width: 100%; height: auto; }
 }
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, #8B3A52 0%, #c4526e 50%, #6B2D3E 100%);
+    background: linear-gradient(135deg, #6B2D3E 0%, #8B3A52 60%, #c4526e 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
-  /* Deep dark elegant gradient for hero - not pink */
-  .bg-brand-gradient {
-    background: linear-gradient(145deg, #1a0a10 0%, #2d1219 40%, #4a1f2b 100%);
+  /* Hero - warm charcoal, not pure black, not pink */
+  .bg-hero {
+    background: linear-gradient(160deg, #2a1a0e 0%, #1c1008 50%, #0e0806 100%);
+  }
+  /* Section header - deep brand */
+  .bg-section-header {
+    background: linear-gradient(135deg, #4a1f2b 0%, #6B2D3E 60%, #8B3A52 100%);
   }
   .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); }
   .card-lift { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
-  .card-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(139,58,82,0.15); }
+  .card-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(139,58,82,0.12); }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; }
   .img-zoom { overflow: hidden; }
   .img-zoom img { transition: transform 0.6s ease; }
-  .img-zoom:hover img { transform: scale(1.08); }
+  .img-zoom:hover img { transform: scale(1.06); }
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #fdf4f6; }
+::-webkit-scrollbar-track { background: #faf4ef; }
 ::-webkit-scrollbar-thumb { background: #8B3A52; border-radius: 10px; }
 
 /* Chat bubbles */
 .chat-bubble-user { background: linear-gradient(135deg, #8B3A52, #6B2D3E); border-radius: 18px 18px 4px 18px; }
 .chat-bubble-bot { background: #fff; border: 1px solid #F2C4CE; border-radius: 18px 18px 18px 4px; box-shadow: 0 2px 8px rgba(139,58,82,0.08); }
 
-/* Admin sidebar */
+/* Admin */
 .admin-nav-item { transition: all 0.2s; }
-.admin-nav-item:hover { background: rgba(139,58,82,0.10); color: #8B3A52; }
+.admin-nav-item:hover { background: rgba(139,58,82,0.08); color: #8B3A52; }
 .admin-nav-item.active { background: rgba(139,58,82,0.12); color: #8B3A52; border-right: 3px solid #8B3A52; }
 
 /* Animations */
-@keyframes fadeIn    { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeUp    { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-@keyframes scaleIn   { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
-@keyframes slideUp   { from { opacity:0; transform:translateY(100%); } to { opacity:1; transform:translateY(0); } }
-@keyframes bounceSoft{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+@keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+@keyframes fadeUp    { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes scaleIn   { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+@keyframes slideUp   { from{opacity:0;transform:translateY(100%)} to{opacity:1;transform:translateY(0)} }
+@keyframes bounceSoft{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
 .animate-fade-in    { animation: fadeIn 0.4s ease forwards; }
 .animate-fade-up    { animation: fadeUp 0.6s ease forwards; }
@@ -56,7 +60,7 @@
 .animate-slide-up   { animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
 .animate-bounce-soft{ animation: bounceSoft 2.4s ease-in-out infinite; }
 
-.stagger-1 { animation-delay:0.1s; opacity:0; }
-.stagger-2 { animation-delay:0.2s; opacity:0; }
-.stagger-3 { animation-delay:0.3s; opacity:0; }
-.stagger-4 { animation-delay:0.4s; opacity:0; }
+.stagger-1{animation-delay:0.1s;opacity:0}
+.stagger-2{animation-delay:0.2s;opacity:0}
+.stagger-3{animation-delay:0.3s;opacity:0}
+.stagger-4{animation-delay:0.4s;opacity:0}
